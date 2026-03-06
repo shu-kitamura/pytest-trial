@@ -1,0 +1,45 @@
+host:
+  address: 192.168.1.10
+  user: user
+  password: password
+
+guest:
+  address: 192.168.11.10 
+
+driver:
+  name: ntg3
+  version: 4.1.15.0-4vmw
+
+vmnics:
+  - name: vmnic0
+  - name: vmnic1
+
+raid_controller:
+  slot: 0
+
+raid_parameters:
+  - level: 0
+    drives: [sda]
+    stripe_size: 64KB
+    type: wt
+    cache: true
+  - level: 1
+    drives: [sdb, sdc]
+    stripe_size: 512KB
+    type: wt
+    cache: false
+  - level: 5
+    drives: [sdd, sde, sdf]
+    stripe_size: 32KB
+    type: wb
+    cache: true
+
+hotspare_parameters:
+  - vd: 100
+    type: autoreplace
+    e: 252
+    s: 1
+  - vd: 100
+    type: dedicated
+    e: 252
+    s: 1
