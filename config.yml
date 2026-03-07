@@ -4,7 +4,9 @@ host:
   password: password
 
 guest:
-  address: 192.168.11.10 
+  address: 192.168.11.10 ]
+
+output_dir: ./output
 
 driver:
   name: ntg3

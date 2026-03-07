@@ -12,3 +12,6 @@ wheels/
 # cache directories
 .pytest_cache/
 .ruff_cache/
+
+# Output directory for test results
+output/
