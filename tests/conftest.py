@@ -3,7 +3,7 @@ import pytest
 from pathlib import Path
 from typing import Any
 
-from tests.lib.config import config_load
+from tests.helper.config import config_load
 
 CONFIG_PATH = Path("config.yml")
 

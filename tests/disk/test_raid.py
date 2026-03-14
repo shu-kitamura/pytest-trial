@@ -1,6 +1,6 @@
 import pytest
 import io
-from tests.lib.config import config_load
+from tests.helper.config import config_load
 
 config = config_load()
 raid_parameters = [
