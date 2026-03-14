@@ -1,6 +1,8 @@
+import pytest
 import io
 
 
+@pytest.mark.log
 def test_version_check(config, output_file: io.TextIOWrapper):
     # cmd = f"{driver['name']} --version"
     result = "1.0.0"  # mocked result for demonstration
@@ -11,6 +13,7 @@ def test_version_check(config, output_file: io.TextIOWrapper):
     )
 
 
+@pytest.mark.log
 def test_vmnic_name(config, output_file: io.TextIOWrapper):
     expected_vmnics = config["nic"]["vmnics"]
     vmnic_list = ["vmnic0", "vmnic1"]  # mocked list of vmnic names for demonstration
