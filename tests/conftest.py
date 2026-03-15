@@ -4,21 +4,20 @@ from collections.abc import Generator
 from datetime import datetime
 from io import TextIOWrapper
 from pathlib import Path
-from typing import Any
 
-from tests.helper.config import config_load
+from tests.helper.config import Config, config_load
 
 CONFIG_PATH = Path("config.yml")
 
 
 @pytest.fixture(scope="session")
-def config(config_path: Path = CONFIG_PATH) -> dict[str, Any]:
+def config(config_path: Path = CONFIG_PATH) -> Config:
     return config_load(config_path)
 
 
 @pytest.fixture(scope="session")
-def output_dir(config: dict[str, Any]) -> Path:
-    dir = Path(config["output_dir"])
+def output_dir(config: Config) -> Path:
+    dir = Path(config.output_dir)
     dir.mkdir(parents=True, exist_ok=True)
     return dir
 
