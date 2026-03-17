@@ -33,6 +33,7 @@ class Config(BaseModel):
     guest: GuestConfig
     output_dir: str
     driver: DriverConfig
+    features: dict[str, bool]
     nic: NicConfig | None = None
     dac: DacConfig | None = None
 

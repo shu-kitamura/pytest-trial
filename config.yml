@@ -17,3 +17,8 @@ driver:
 
 nic:
   vmnics: [vmnic0, vmnic1]
+
+features:
+  disk: false
+  network: true
+  fc: false

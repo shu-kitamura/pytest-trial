@@ -45,15 +45,14 @@ def log_timestamps(request: pytest.FixtureRequest, output_file: TextIOWrapper) -
     output_file.write(f"終了時刻: {end:%Y-%m-%d %H:%M:%S}\n")
 
 
+def get_features() -> dict[str, bool]:
+    return config_load(CONFIG_PATH).features
+
 # True が返ったディレクトリをテストを無視する hook 関数
-def pytest_ignore_collect(collection_path) -> bool:
-    features = {
-        "disk": False,
-        "network": True,
-    }
+def pytest_ignore_collect(collection_path, config) -> bool:
+    features = get_features()
 
     cpath = Path(collection_path)
-    print(f"Collecting: {cpath}")
 
     # features が true のディレクトリのみ収集する
     for feature, enabled in features.items():
