@@ -45,18 +45,25 @@ def log_timestamps(request: pytest.FixtureRequest, output_file: TextIOWrapper) -
     output_file.write(f"終了時刻: {end:%Y-%m-%d %H:%M:%S}\n")
 
 
-def get_features() -> dict[str, bool]:
-    return config_load(CONFIG_PATH).features
+@pytest.fixture(scope="package", autouse=True)
+def trial_fixture() -> Generator[str, None, None]:
+    print(datetime.now())
+    yield "trial data"
+    print("Tearing down trial fixture")
 
-# True が返ったディレクトリをテストを無視する hook 関数
-def pytest_ignore_collect(collection_path, config) -> bool:
-    features = get_features()
 
-    cpath = Path(collection_path)
+# def get_features() -> dict[str, bool]:
+#     return config_load(CONFIG_PATH).features
 
-    # features が true のディレクトリのみ収集する
-    for feature, enabled in features.items():
-        if enabled and feature in cpath.parts:
-            return False  # 有効な feature が含まれているディレクトリは収集する
+# # True が返ったディレクトリをテストを無視する hook 関数
+# def pytest_ignore_collect(collection_path, config) -> bool:
+#     features = get_features()
 
-    return True  # それ以外のファイルは収集しない
+#     cpath = Path(collection_path)
+
+#     # features が true のディレクトリのみ収集する
+#     for feature, enabled in features.items():
+#         if enabled and feature in cpath.parts:
+#             return False  # 有効な feature が含まれているディレクトリは収集する
+
+#     return True  # それ以外のファイルは収集しない
